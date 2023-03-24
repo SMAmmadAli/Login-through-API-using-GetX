@@ -31,24 +31,28 @@ class LoginView extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            InkWell(
-              onTap: () {
-                loginController.loginApi();
-              },
-              child: Container(
-                height: 45,
-                width: MediaQuery.of(context).size.width * 0.8,
-                color: Colors.grey,
-                child: const Center(
-                    child: Text(
-                  "Login",
-                  style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                )),
+            Obx(
+              () => InkWell(
+                onTap: () {
+                  loginController.loginApi();
+                },
+                child: loginController.loading.value
+                    ? CircularProgressIndicator()
+                    : Container(
+                        height: 45,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        color: Colors.grey,
+                        child: const Center(
+                            child: Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        )),
+                      ),
               ),
-            ),
+            )
           ],
         ),
       ),
